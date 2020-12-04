@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { Button } from 'reactstrap'
 
 export default function Home() {
   return (
@@ -11,8 +12,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href='https://nextjs.org'>Next.js!</a>
+          Welcome too <a href='https://nextjs.org'>Next.js!</a>
         </h1>
+        <Button color='danger'>Danger!</Button>
 
         <p className={styles.description}>
           Get started by editing{' '}
