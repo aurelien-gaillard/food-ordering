@@ -37,6 +37,6 @@ export default function Layout({ children }) {
 }
 const Wrapper = styled.header`
   a {
-    color: red;
+    color: orange;
   }
 `
