@@ -1,3 +1,9 @@
+import RestaurantList from '../components/RestaurantList'
+
 export default function Home() {
-  return <div>Testik</div>
+  return (
+    <div>
+      <RestaurantList />
+    </div>
+  )
 }
