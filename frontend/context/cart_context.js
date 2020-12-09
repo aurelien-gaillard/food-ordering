@@ -5,6 +5,7 @@ const CartContext = React.createContext()
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({ items: [], total: 0 })
+  console.log(cart)
 
   const addItem = (item) => {
     let { items } = cart
@@ -19,7 +20,6 @@ const CartProvider = ({ children }) => {
         items: [...items, item],
         total: cart.total + item.price,
       })
-      Cookie.set('cart', cart.items)
     } else {
       setCart({
         items: cart.items.map((item) =>
@@ -29,7 +29,6 @@ const CartProvider = ({ children }) => {
         ),
         total: cart.total + item.price,
       })
-      Cookie.set('cart', cart.items)
     }
   }
 
@@ -47,7 +46,6 @@ const CartProvider = ({ children }) => {
         ),
         total: cart.total - item.price,
       })
-      Cookie.set('cart', cart.items)
     } else {
       const items = [...cart.items]
       const index = items.findIndex((i) => i.id === newItem.id)
@@ -55,7 +53,6 @@ const CartProvider = ({ children }) => {
       items.splice(index, 1)
 
       setCart({ items: items, total: cart.total - item.price })
-      Cookie.set('cart', cart.items)
     }
   }
 
@@ -70,6 +67,9 @@ const CartProvider = ({ children }) => {
       })
     }
   }, [])
+  useEffect(() => {
+    Cookie.set('cart', cart.items)
+  }, [cart])
 
   return (
     <CartContext.Provider
@@ -90,8 +90,3 @@ export const useCartContext = () => {
 }
 
 export { CartContext, CartProvider }
-
-// Dont forget to wrap the App with the Provider
-// <AppProvider>
-//   <App />
-// </AppProvider>

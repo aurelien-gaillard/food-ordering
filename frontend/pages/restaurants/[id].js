@@ -31,7 +31,9 @@ function Restaurants(props) {
       })
   }
   useEffect(() => {
-    fetchData()
+    if (router.query.id) {
+      fetchData()
+    }
   }, [router])
   console.log(resto)
 
