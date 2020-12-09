@@ -12,10 +12,10 @@ import {
   Col,
 } from 'reactstrap'
 
-const RestaurantList = () => {
+const RestaurantList = (props) => {
   const [restoList, setRestoList] = useState([])
 
-  const fectData = () => {
+  const fetchData = () => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/restaurants`)
       .then(function (response) {
@@ -28,14 +28,17 @@ const RestaurantList = () => {
       })
   }
   useEffect(() => {
-    fectData()
+    fetchData()
   }, [])
   console.log(restoList)
 
   if (restoList.length != 0) {
+    const searchQuery = restoList.filter((query) =>
+      query.name.toLowerCase().includes(props.search)
+    )
     return (
       <Row>
-        {restoList.map((res) => (
+        {searchQuery.map((res) => (
           <Col xs='6' sm='4' key={res.id}>
             <Card style={{ margin: '0 0.5rem 20px 0.5rem' }}>
               <CardImg
@@ -58,6 +61,23 @@ const RestaurantList = () => {
             </Card>
           </Col>
         ))}
+        <style jsx global>
+          {`
+            a {
+              color: white;
+            }
+            a:link {
+              text-decoration: none;
+              color: white;
+            }
+            a:hover {
+              color: white;
+            }
+            .card-columns {
+              column-count: 3;
+            }
+          `}
+        </style>
       </Row>
     )
   }
