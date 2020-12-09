@@ -30,7 +30,6 @@ const RestaurantList = (props) => {
   useEffect(() => {
     fetchData()
   }, [])
-  console.log(restoList)
 
   if (restoList.length != 0) {
     const searchQuery = restoList.filter((query) =>

@@ -12,8 +12,11 @@ import {
   Row,
 } from 'reactstrap'
 import axios from 'axios'
+import Cart from '../../components/Cart'
+import { useCartContext } from '../../context/cart_context'
 
 function Restaurants(props) {
+  const { addItem } = useCartContext()
   const [resto, setResto] = useState([])
   const router = useRouter()
   console.log(router.query)
@@ -53,7 +56,7 @@ function Restaurants(props) {
                   <CardText>{res.description}</CardText>
                 </CardBody>
                 <div className='card-footer'>
-                  <Button outline color='primary'>
+                  <Button outline color='primary' onClick={() => addItem(res)}>
                     + Add To Cart
                   </Button>
 
@@ -81,6 +84,11 @@ function Restaurants(props) {
               </Card>
             </Col>
           ))}
+          <Col xs='3' style={{ padding: 0 }}>
+            <div>
+              <Cart />
+            </div>
+          </Col>
         </Row>
       </>
     )

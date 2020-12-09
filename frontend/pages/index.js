@@ -4,6 +4,7 @@ import { Col, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap'
 
 export default function Home() {
   const [query, updateQuery] = useState('')
+
   return (
     <div className='container-fluid'>
       <Row>
