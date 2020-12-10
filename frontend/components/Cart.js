@@ -10,7 +10,7 @@ function Cart() {
 
   const { cart, addItem, removeItem } = useCartContext()
   const { isAuthenticated } = useUserContext()
-
+  console.log(router.pathname)
   return (
     <div>
       <Card style={{ padding: '10px 5px' }} className='cart'>
@@ -76,7 +76,7 @@ function Cart() {
                     <h5 style={{ fontWeight: 100, color: 'gray' }}>Total:</h5>
                     <h3>${cart.total.toFixed(2)}</h3>
                   </Badge>
-                  {router.pathname === '/restaurants' && (
+                  {router.pathname === '/restaurants/[id]' && (
                     <div
                       style={{
                         marginTop: 10,

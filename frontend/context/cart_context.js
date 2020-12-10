@@ -62,11 +62,15 @@ const CartProvider = ({ children }) => {
     console.log(cart)
     if (typeof cart === 'string' && cart !== 'undefined') {
       console.log('foyd')
+      let totalValue = 0
       JSON.parse(cart).forEach((item) => {
-        setCart({ items: JSON.parse(cart), total: item.price * item.quantity })
+        totalValue += item.price * item.quantity
       })
+
+      setCart({ items: JSON.parse(cart), total: totalValue })
     }
   }, [])
+
   useEffect(() => {
     Cookie.set('cart', cart.items)
   }, [cart])
